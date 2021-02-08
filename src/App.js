@@ -10,11 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Add from './Components/Pages/Add';
 
 const SET = (k, v) => localStorage.setItem(k, JSON.stringify(v));
-const GET = (k) => JSON.parse(localStorage.getItem(k));
+const GET = (k) => JSON.parse(localStorage.getItem(k) || 'null');
 
 function App() {
   const [list, setList] = React.useState(GET('textData') || []);
-
+  console.log(list);
   useEffect(() => SET('textData', list), [list]);
   return (
     <>

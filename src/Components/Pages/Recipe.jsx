@@ -1,13 +1,19 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './Recipe.scss';
 
 export default function Recipe({ list, setList }) {
+  console.log('abclist', list);
+
   const { id } = useParams();
   const index = list.findIndex((item) => item.id === +id);
+
   const article = list[index];
+  if (!article) return <Redirect to='/add' />;
+  console.log('abc' + article);
+
   const onDelete = () => {
     if (index === -1) {
       return;
